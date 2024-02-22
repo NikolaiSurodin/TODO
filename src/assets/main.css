@@ -1,0 +1,63 @@
+@import './base.css';
+@import './animation.css';
+
+#app {
+    max-width: 100%;
+    font-weight: normal;
+    color: #2C3E50FF;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+[role="button"] {
+    cursor: pointer;
+}
+
+.btn {
+    align-items: center;
+    appearance: none;
+    background: linear-gradient(263.27deg, #2f9fff, #0089ff 58.72%, #006fce 90.93%);
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 24px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s;
+    white-space: nowrap;
+    border: none;
+    padding: 3px 16px;
+
+    &:hover {
+        background: linear-gradient(263.27deg, #55abfd, #0089ff 58.72%, #008afd 90.93%);
+    }
+}
+
+.btn-success {
+    background: hsla(160, 100%, 37%, 1);
+
+    &:hover {
+        background: hsl(156, 100%, 50%);
+    }
+}
+
+.btn-primary {
+    background: #f2f2f2;
+    border: 1px solid #b7b7b7;
+
+    &:hover {
+        background: #f2f2f2
+    }
+}
+
+.btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
