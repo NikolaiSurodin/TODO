@@ -6,7 +6,7 @@ const props = defineProps( {
     default: () => ( {} )
   }
 } )
-const emit = defineEmits( [ 'edit', 'remove' ] )
+const emit = defineEmits( [ 'edit', 'remove', 'complete' ] )
 
 </script>
 
@@ -89,6 +89,14 @@ const emit = defineEmits( [ 'edit', 'remove' ] )
 
   &__body-description {
     padding: 0.8em;
+
+    p {
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
+      display: -webkit-box;
+      overflow: hidden;
+    }
 
     &--completed {
       text-decoration: line-through;

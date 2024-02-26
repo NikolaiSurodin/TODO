@@ -17,7 +17,7 @@ const props = defineProps( {
   }
 } )
 
-const emit = defineEmits( [ 'edit', 'remove' ] )
+const emit = defineEmits( [ 'edit', 'remove', 'complete' ] )
 
 </script>
 
@@ -34,6 +34,7 @@ const emit = defineEmits( [ 'edit', 'remove' ] )
           :task="task"
           @edit="emit('edit', { show: true, task })"
           @remove="emit('remove', task )"
+          @complete="emit('complete', task )"
         />
       </template>
       <template v-else>
@@ -47,6 +48,10 @@ const emit = defineEmits( [ 'edit', 'remove' ] )
 
 <style scoped lang="scss">
 .tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
   &__list-title, &__empty-list {
     font-size: 1.5rem;
     text-align: center;

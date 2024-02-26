@@ -82,25 +82,25 @@ function setActiveTab( tab ) {
   activeTab.value = tab
 }
 
-const newTaskText = ref( '' )
+const newTaskTitle = ref( '' )
 
-function addNewTaskText( text ) {
-  if( !text ) return
+function addNewTaskTitle( title ) {
+  if( !title ) return
 
   const task = new Task( {
-    title: text,
+    title,
     completed: false,
   } )
 
   taskList.value.unshift( task )
   setLocalStorage( { key: STORAGE_KEY, data: taskList.value } )
-  newTaskText.value = ''
+  newTaskTitle.value = ''
 }
 
 function editTask( task ) {
-  const { id, text, completed } = task
+  const { id, title, completed } = task
   const editableTask = taskList.value.find( el => el.id === id )
-  editableTask.title = text
+  editableTask.title = title
   editableTask.completed = completed
 
   setLocalStorage( { key: STORAGE_KEY, data: taskList.value } )
@@ -119,14 +119,17 @@ function removeTask( task ) {
       <section class="app-todo__input">
         <DefaultInput
           placeholder="Create a new task. What we need to do?"
-          v-model="newTaskText"
-          @add-task="addNewTaskText"
+          v-model="newTaskTitle"
+          @add-task="addNewTaskTitle"
         />
-        <section class="app-todo__mobile-button">
+        <section
+          class="app-todo__add-button"
+          :class="{ 'app-todo__add-button--show': newTaskTitle }"
+        >
           <button
-            class="btn app-todo__mobile-button__add"
-            :disabled="!newTaskText"
-            @click="addNewTaskText( newTaskText )"
+            class="btn"
+            :disabled="!newTaskTitle"
+            @click="addNewTaskTitle( newTaskTitle )"
           >
             Create
           </button>
@@ -145,6 +148,7 @@ function removeTask( task ) {
           :active-tab="activeTab"
           @edit="showEditModal"
           @remove="removeTask"
+          @complete="editTask"
         />
       </section>
       <Teleport to="body">
@@ -181,15 +185,23 @@ function removeTask( task ) {
     z-index: 1;
   }
 
-  &__mobile-button {
-    display: none;
+  &__add-button {
+    display: flex;
     width: 100%;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     padding: 12px;
+    transform: translateY(-44px);
+    visibility: hidden;
+    transition: 0.2s;
 
     @include ipadpro {
       display: flex;
+    }
+
+    &--show {
+      transform: translateY(0);
+      visibility: visible;
     }
   }
 
