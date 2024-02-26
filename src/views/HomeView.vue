@@ -42,7 +42,7 @@ const isLoading = ref( false )
 function getTaskList() {
   if( !taskList.value.length ) {
     isLoading.value = true
-    fetchTaskList()
+    fetchTaskList( { '_limit': 8 } )
       .then( data => {
         taskList.value = data.map( ( el ) => new Task( el ) )
         setLocalStorage( { key: STORAGE_KEY, data: taskList.value } )
