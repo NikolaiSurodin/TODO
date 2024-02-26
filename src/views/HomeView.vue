@@ -27,7 +27,7 @@ const completedTaskList = computed( () => {
 
 const getTodoList = computed( () => {
   let list = taskList.value
-  if( activeTab.value.name === 'All' ) {
+  if( activeTab.value.name === taskStatus.ALL ) {
     return list
   } else {
     list = activeTab.value.name === taskStatus.COMPLETED ? completedTaskList.value : activeTaskList.value
