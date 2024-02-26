@@ -28,6 +28,8 @@ function addTodo( model ) {
 
 <style scoped lang="scss">
 .default-input {
+  position: relative;
+  z-index: 1;
   margin: 0;
   width: 100%;
   font-size: 1.5em;

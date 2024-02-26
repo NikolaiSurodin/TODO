@@ -41,7 +41,7 @@ const isSaveDisable = computed( () => {
 function saveTask( params = {} ) {
   if( text.value.trim() === '' ) return
 
-  emit( 'edit', { text: text.value, id: props.item.id, completed: false, ...params } )
+  emit( 'edit', { title: text.value, id: props.item.id, completed: false, ...params } )
   text.value = ''
   closeModal()
 }
